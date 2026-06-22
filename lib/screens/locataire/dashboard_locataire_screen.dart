@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+/// Écran principal du tableau de bord locataire.
+///
+/// Affiche les informations de solde, le loyer mensuel, le prochain paiement,
+/// des actions rapides et l'historique des derniers paiements.
 class DashboardLocataireScreen extends StatelessWidget {
   const DashboardLocataireScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Couleur de fond générale de l'écran
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text(
@@ -34,6 +39,7 @@ class DashboardLocataireScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // En-tête indiquant le type d'utilisateur connecté
             // ===== EN-TÊTE LOCATAIRE =====
             const Text(
               'Locataire',
@@ -92,6 +98,7 @@ class DashboardLocataireScreen extends StatelessWidget {
     );
   }
 
+  /// Retourne la carte qui affiche le solde actuel du locataire.
   // ==========================================
   // CARTE SOLDE ACTUEL
   // ==========================================
@@ -126,7 +133,8 @@ class DashboardLocataireScreen extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 decoration: BoxDecoration(
                   color: Colors.red[400],
                   borderRadius: BorderRadius.circular(12),
@@ -155,6 +163,7 @@ class DashboardLocataireScreen extends StatelessWidget {
     );
   }
 
+  /// Carte d'information du montant du loyer mensuel.
   // ==========================================
   // CARTE LOYER MENSUEL
   // ==========================================
@@ -197,6 +206,7 @@ class DashboardLocataireScreen extends StatelessWidget {
     );
   }
 
+  /// Carte d'information de la date du prochain paiement.
   // ==========================================
   // CARTE PROCHAIN PAIEMENT
   // ==========================================
@@ -239,6 +249,7 @@ class DashboardLocataireScreen extends StatelessWidget {
     );
   }
 
+  /// Grille de boutons d'action rapide pour le locataire.
   // ==========================================
   // GRILLE DES ACTIONS
   // ==========================================
@@ -275,6 +286,7 @@ class DashboardLocataireScreen extends StatelessWidget {
     );
   }
 
+  /// Bouton d'action réutilisable utilisé dans la grille d'actions.
   Widget _buildActionButton({
     required IconData icon,
     required String label,
@@ -315,6 +327,7 @@ class DashboardLocataireScreen extends StatelessWidget {
     );
   }
 
+  /// Liste des derniers paiements affichés sous forme de tuiles.
   // ==========================================
   // DERNIERS PAIEMENTS (LISTE)
   // ==========================================
@@ -380,6 +393,7 @@ class DashboardLocataireScreen extends StatelessWidget {
     );
   }
 
+  /// Barre de navigation inférieure pour accéder aux sections principales.
   // ==========================================
   // BARRE DE NAVIGATION EN BAS
   // ==========================================
@@ -429,6 +443,7 @@ class DashboardLocataireScreen extends StatelessWidget {
     );
   }
 
+  /// Affiche une boîte de dialogue demandant confirmation de déconnexion.
   // ==========================================
   // DIALOGUE DE DÉCONNEXION
   // ==========================================

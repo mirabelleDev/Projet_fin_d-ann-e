@@ -18,7 +18,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final selectedRole = (context.read<AuthCubit>().state as AuthInitial?)?.selectedRole;
+    Role? selectedRole;
+final state = context.read<AuthCubit>().state;
+if (state is AuthInitial) {
+  selectedRole = state.selectedRole;
+}
 
     return Scaffold(
       appBar: AppBar(

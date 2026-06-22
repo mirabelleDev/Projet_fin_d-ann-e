@@ -17,12 +17,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmController = TextEditingController();
 
-  bool _isPasswordVisible = false; // ⬅️ Pour le mot de passe
-  bool _isConfirmVisible = false; // ⬅️ Pour la confirmation
+  bool _isPasswordVisible = false;
+  bool _isConfirmVisible = false;
 
   @override
   Widget build(BuildContext context) {
-    final selectedRole = (context.read<AuthCubit>().state as AuthInitial?)?.selectedRole;
+    // ✅ Récupération sécurisée du rôle sélectionné
+    Role? selectedRole;
+    final state = context.read<AuthCubit>().state;
+    if (state is AuthInitial) {
+      selectedRole = state.selectedRole;
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -78,7 +83,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  // Mot de passe (avec visibilité)
+                  // Mot de passe
                   TextField(
                     controller: _passwordController,
                     obscureText: !_isPasswordVisible,
@@ -99,7 +104,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  // Confirmation du mot de passe (avec visibilité)
+                  // Confirmation
                   TextField(
                     controller: _confirmController,
                     obscureText: !_isConfirmVisible,
@@ -142,13 +147,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           );
                           return;
                         }
-                        context.read<AuthCubit>().register(nom, email, password, selectedRole!);
+                        if (selectedRole == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Veuillez sélectionner un profil')),
+                          );
+                          return;
+                        }
+                        context.read<AuthCubit>().register(nom, email, password, selectedRole);
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                       ),
                       child: const Text("S'inscrire"),
                     ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton(
+                    onPressed: () {
+                      context.goNamed('login');
+                    },
+                    child: const Text("Déjà un compte ? Se connecter"),
                   ),
                 ],
               ),

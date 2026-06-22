@@ -28,10 +28,19 @@ dependencies:
   # Design
   cupertino_icons: ^1.0.8
 
+  # ✅ BASE DE DONNÉES SQLITE
+  drift: ^2.28.0
+  sqlite3_flutter_libs: ^0.5.42
+  path_provider: ^2.1.5
+  path: ^1.9.0
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.2
 
-flutter:
-  uses-material-design: true
+# ✅ GÉNÉRATEUR DE CODE DRIFT
+  drift_dev: ^2.28.0
+  build_runner: ^2.4.15
+
