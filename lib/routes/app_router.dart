@@ -14,17 +14,17 @@ class AppRouter {
       GoRoute(
         path: '/',
         name: 'selection',
-        builder: (context, state) => SelectionProfilScreen(), // ⬅️ ENLEVÉ const
+        builder: (context, state) => const SelectionProfilScreen(), // ⬅️ ENLEVÉ const
       ),
       GoRoute(
         path: '/login',
         name: 'login',
-        builder: (context, state) => LoginScreen(), // ⬅️ ENLEVÉ const
+        builder: (context, state) => const LoginScreen(), // ⬅️ ENLEVÉ const
       ),
       GoRoute(
         path: '/register',
         name: 'register',
-        builder: (context, state) => RegisterScreen(), // ⬅️ ENLEVÉ const
+        builder: (context, state) => const RegisterScreen(), // ⬅️ ENLEVÉ const
       ),
       GoRoute(
         path: '/locataire/dashboard',

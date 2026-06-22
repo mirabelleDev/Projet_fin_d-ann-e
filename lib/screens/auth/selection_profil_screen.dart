@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/auth/auth_cubit.dart';
 import '../../models/user.dart';
+import 'package:go_router/go_router.dart';
 
 class SelectionProfilScreen extends StatelessWidget {
   const SelectionProfilScreen({super.key});
@@ -82,7 +83,7 @@ class SelectionProfilScreen extends StatelessWidget {
         onTap: () {
           // Sauvegarder le rôle sélectionné et naviguer vers l'écran de connexion
           context.read<AuthCubit>().selectRole(role);
-          Navigator.pushNamed(context, '/login');
+          context.go('/login');
         },
         borderRadius: BorderRadius.circular(12),
         child: Padding(
