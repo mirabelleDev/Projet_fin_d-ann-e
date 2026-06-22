@@ -42,10 +42,10 @@ class LoginScreen extends StatelessWidget {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+               const Text(
                   'Connectez-vous à votre espace',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
+                  style:  TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+),
                 const SizedBox(height: 32),
                 TextField(
                   controller: _emailController,
