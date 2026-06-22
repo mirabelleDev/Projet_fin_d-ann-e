@@ -1,51 +1,19 @@
-enum Role { gerant, proprietaire, locataire }
+enum Role { locataire, gerant, proprietaire }
 
 class User {
   final String id;
   final String nom;
   final String email;
-  final String telephone;
+  final String password; // hashé en vrai, mais pour mock on garde en clair
   final Role role;
 
-  User({
-    required this.id,
-    required this.nom,
-    required this.email,
-    required this.telephone,
-    required this.role,
-  });
+  User({required this.id, required this.nom, required this.email, required this.password, required this.role});
 
-  // Pour simuler l'API (Mock)
-  factory User.mockGerant() => User(
-    id: 'uuid-001',
-    nom: 'Jean Dupont',
-    email: 'jean@gerant.com',
-    telephone: '+229 90000000',
-    role: Role.gerant,
-  );
-
-  factory User.mockProprietaire() => User(
-    id: 'uuid-002',
-    nom: 'Aïcha Diallo',
-    email: 'aicha@proprio.com',
-    telephone: '+229 91111111',
-    role: Role.proprietaire,
-  );
-
-  factory User.mockLocataire() => User(
-    id: 'uuid-003',
-    nom: 'Ali Traoré',
-    email: 'ali@locataire.com',
-    telephone: '+229 92222222',
-    role: Role.locataire,
-  );
-
-  // Conversion JSON
   Map<String, dynamic> toJson() => {
     'id': id,
     'nom': nom,
     'email': email,
-    'telephone': telephone,
+    'password': password,
     'role': role.name,
   };
 
@@ -53,7 +21,14 @@ class User {
     id: json['id'],
     nom: json['nom'],
     email: json['email'],
-    telephone: json['telephone'],
+    password: json['password'],
     role: Role.values.firstWhere((e) => e.name == json['role']),
   );
+
+  // Mock utilisateurs pré-remplis (pour test)
+  static List<User> mockUsers() => [
+    User(id: '1', nom: 'Locataire Test', email: 'locataire@test.com', password: '1234', role: Role.locataire),
+    User(id: '2', nom: 'Gérant Test', email: 'gerant@test.com', password: '1234', role: Role.gerant),
+    User(id: '3', nom: 'Propriétaire Test', email: 'proprio@test.com', password: '1234', role: Role.proprietaire),
+  ];
 }
