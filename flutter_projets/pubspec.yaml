@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    uses-material-design: true
 
   # Gestion d'état
   flutter_bloc: ^8.1.6
